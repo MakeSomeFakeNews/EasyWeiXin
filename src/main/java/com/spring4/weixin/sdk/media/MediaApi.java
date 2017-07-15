@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
-import com.jfinal.weixin.sdk.api.MediaApi.MediaType;
-import com.jfinal.weixin.sdk.api.MediaArticles;
 import com.spring4.weixin.sdk.VerifyKit;
 import com.spring4.weixin.utils.HttpClientUtil;
 /**

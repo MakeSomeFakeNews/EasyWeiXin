@@ -1,6 +1,6 @@
 package com.spring4.weixin.sdk.msg.in.event;
 
-import com.jfinal.weixin.sdk.utils.XmlHelper;
+import com.spring4.weixin.utils.XmlHelper;
 
 /**
  * 没有找到适配类型时的事件
