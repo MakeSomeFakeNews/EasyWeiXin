@@ -43,7 +43,7 @@ import com.spring4.weixin.utils.PropertiesUtil;
  * @author spring4
  */
 public class WeiXinMessageHandel {
-	private String defaultMessageHandel = "cn.spring4.message.MessageHandel";
+	private String defaultMessageHandel = "com.spring4.weixin.sdk.wx.DefaultHandelImp";
 
 	public String getOutMsg(String inMsg) {
 		DefaultHandelImp handel = null;
@@ -55,7 +55,7 @@ public class WeiXinMessageHandel {
 
 		try {
 			// 如果用户重写消息处理器则实例化用户的消息处理器
-			String handler = PropertiesUtil.getProperty("message.handler");
+			String handler = PropertiesUtil.getProperty("handler");
 			// 否则使用默认
 			if (handler != null) {
 				defaultMessageHandel = handler;

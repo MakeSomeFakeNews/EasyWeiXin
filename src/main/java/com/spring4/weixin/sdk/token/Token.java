@@ -2,6 +2,7 @@ package com.spring4.weixin.sdk.token;
 
 import com.alibaba.fastjson.JSONObject;
 import com.spring4.weixin.utils.HttpClientUtil;
+import com.spring4.weixin.utils.PropertiesUtil;
 
 /**
  * @author spring4<br>
@@ -18,9 +19,9 @@ public class Token {
 	 * @param appsecret
 	 * @return access_token
 	 */
-	public Access_Token get_access_token(String appid, String appsecret) {
-		String access_token = HttpClientUtil
-				.get(access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret));
+	public Access_Token get_access_token() {
+		String access_token = HttpClientUtil.get(access_token_url.replace("APPID", PropertiesUtil.getAppId())
+				.replace("APPSECRET", PropertiesUtil.getSecret()));
 		JSONObject jsonObject = JSONObject.parseObject(access_token);
 		String token = jsonObject.getString("access_token");
 		String expires = jsonObject.getString("expires_in");

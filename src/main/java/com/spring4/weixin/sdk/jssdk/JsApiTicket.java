@@ -26,4 +26,9 @@ public class JsApiTicket {
 	public JsApiTicket() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "JsApiTicket [ticket=" + ticket + ", expires_in=" + expires_in + "]";
+	}
+	
 }

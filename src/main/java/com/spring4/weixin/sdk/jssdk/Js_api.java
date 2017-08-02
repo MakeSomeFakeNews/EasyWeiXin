@@ -47,6 +47,7 @@ public class Js_api {
 	 */
 	public JsApiTicket getJsApiTicket(String access_Token) {
 		String ticket = HttpClientUtil.get(jsapi.replace("ACCESS_TOKEN", access_Token));
+		System.out.println(ticket);
 		JSONObject jsonObject = JSONObject.parseObject(ticket);
 		String jsApiTicket = jsonObject.getString("ticket");
 		String expires_in = jsonObject.getString("expires_in");

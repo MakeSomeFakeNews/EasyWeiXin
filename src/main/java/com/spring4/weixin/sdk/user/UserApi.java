@@ -49,6 +49,7 @@ public class UserApi {
 	 */
 	public UserInfo get_user_info(String access_token, String openid) {
 		String string = HttpClientUtil.get(user_info.replace("ACCESS_TOKEN", access_token).replace("OPENID", openid));
+		System.out.println(string);
 		return user_info(string, openid);
 
 	}

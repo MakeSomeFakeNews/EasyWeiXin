@@ -44,7 +44,7 @@ public class DefaultHandelImp extends DefaultHandel {
 	@Override
 	protected String processInTextMsg(InTextMessage inTextMsg) {
 		OutTextMessage out = new OutTextMessage(inTextMsg);
-		out.setContent("消息已收到");
+		out.setContent("12333");
 		return out.toXml();
 
 	}
@@ -53,7 +53,6 @@ public class DefaultHandelImp extends DefaultHandel {
 	protected String processInImageMsg(InImageMessage inImageMsg) {
 		// TODO Auto-generated method stub
 		OutTextMessage out = new OutTextMessage(inImageMsg);
-		out.setContent("消息已收到");
 		out.setContent("消息已收到");
 		return out.toXml();
 	}
@@ -111,7 +110,7 @@ public class DefaultHandelImp extends DefaultHandel {
 	protected String processInFollowEvent(InSubscribeEvent inFollowEvent) {
 		// TODO Auto-generated method stub
 		OutTextMessage out = new OutTextMessage(inFollowEvent);
-		out.setContent("消息已收到");
+		out.setContent("欢迎关注");
 		return out.toXml();
 	}
 

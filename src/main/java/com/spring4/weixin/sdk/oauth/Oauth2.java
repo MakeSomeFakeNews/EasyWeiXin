@@ -15,14 +15,13 @@ public class Oauth2 {
 	private String user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 
 	public String getSnsapi_baseUrl() {
-		return baseUrl.replace("APPID", PropertiesUtil.getAppId()
-				.replace("REDIRECT_URI", PropertiesUtil.getProperty("redirect_url")).replace("SCOPE", "snsapi_base"));
+		return baseUrl.replace("APPID", PropertiesUtil.getAppId())
+				.replace("REDIRECT_URI", PropertiesUtil.getProperty("url")).replace("SCOPE", "snsapi_base");
 	}
 
 	public String getSnsapi_userinfoUrl() {
-		return baseUrl.replace("APPID",
-				PropertiesUtil.getAppId().replace("REDIRECT_URI", PropertiesUtil.getProperty("redirect_url"))
-						.replace("SCOPE", "snsapi_userinfo"));
+		return baseUrl.replace("APPID", PropertiesUtil.getAppId())
+				.replace("REDIRECT_URI", PropertiesUtil.getProperty("url")).replace("SCOPE", "snsapi_userinfo");
 	}
 
 	/**
@@ -144,7 +143,9 @@ public class Oauth2 {
 	/**
 	 * appid 是 公众号的唯一标识 grant_type 是 填写为refresh_token refresh_token 是
 	 * 填写通过access_token获取到的refresh_token参数
-	 * @param refreshToken 填写通过access_token获取到的refresh_token参数
+	 * 
+	 * @param refreshToken
+	 *            填写通过access_token获取到的refresh_token参数
 	 * @return Oauth2Token 对象
 	 */
 	public Oauth2Token get_refresh_token(String refreshToken) {
