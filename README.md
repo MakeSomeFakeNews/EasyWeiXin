@@ -22,6 +22,7 @@ url = http://1467a8b6.ngrok.io/oauth<br>
 消息处理器<br>
 handler = cn.spring4.weixin.WeixinHandler<br>
 ### 3.2更换配置信息
+==================================================
 ## 基于`springmvc`项目的集成方法
 ```Java
 @Controller
