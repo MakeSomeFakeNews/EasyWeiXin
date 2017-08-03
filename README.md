@@ -4,6 +4,8 @@
 # 快速搭建微信公众平台服务器<br>
 简单封装了所有与微信服务器交互的消息:文本消息、图片消息、图文消息等等<br>
 提供MenuAPI、UserApi、UserTagAPI、MediaAPI、OauthAPI用于实现所有高级接口功能，使用极其简单<br>
+
+Demo---传送门：(https://github.com/adminzhou/EasyWeChatDemo)
 # 使用步骤
 ## 1.下载EasyWeChat
 ## 2.将EasyWechat引入项目
