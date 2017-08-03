@@ -4,11 +4,11 @@
 # 快速搭建微信公众平台服务器<br>
 简单封装了所有与微信服务器交互的消息:文本消息、图片消息、图文消息等等<br>
 提供MenuAPI、UserApi、UserTagAPI、MediaAPI、OauthAPI用于实现所有高级接口功能，使用极其简单<br>
-#使用步骤
-##1.下载EasyWeChat
-##2.将EasyWechat引入项目
-##3.新建weixin.properties
-###3.1配置weixin.properties文件
+# 使用步骤
+## 1.下载EasyWeChat
+## 2.将EasyWechat引入项目
+## 3.新建weixin.properties
+### 3.1配置weixin.properties文件
 开发者模式<br>
 devMode = true<br>
 微信接入token<br>
@@ -21,7 +21,7 @@ oauthUrl 网页授权链接<br>
 url = http://1467a8b6.ngrok.io/oauth<br>
 消息处理器<br>
 handler = cn.spring4.weixin.WeixinHandler<br>
-###3.2更换配置信息
+### 3.2更换配置信息
 ## 基于`springmvc`项目的集成方法
 ```Java
 @Controller
