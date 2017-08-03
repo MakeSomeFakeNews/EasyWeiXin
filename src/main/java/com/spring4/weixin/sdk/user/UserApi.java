@@ -33,7 +33,7 @@ public class UserApi {
 		String json = HttpClientUtil.postJson(user_name_url + access_token, jsonString);
 		VerifyKit.verify(json);
 	}
-
+	//https://api.weixin.qq.com/sns/userinfo
 	private String user_info = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 
 	/**
@@ -93,9 +93,9 @@ public class UserApi {
 		String nickname = json.getString("nickname");
 		String sex = null;
 		String sexNum = json.getString("sex");
-		if (sexNum.equals("1")) {
+		if (sexNum.equals("0")) {
 			sex = "男";
-		} else if (sexNum.equals("2")) {
+		} else if (sexNum.equals("1")) {
 			sex = "女";
 		} else {
 			sex = "未知";

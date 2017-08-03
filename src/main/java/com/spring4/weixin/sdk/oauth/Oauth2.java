@@ -61,9 +61,9 @@ public class Oauth2 {
 		String nickname = json.getString("nickname");
 		String sex = null;
 		String sexNum = json.getString("sex");
-		if (sexNum.equals("1")) {
+		if (sexNum.equals("0")) {
 			sex = "男";
-		} else if (sexNum.equals("2")) {
+		} else if (sexNum.equals("1")) {
 			sex = "女";
 		} else {
 			sex = "未知";
@@ -96,14 +96,15 @@ public class Oauth2 {
 	public UserInfo getUserInfo(String access_token, String openid) {
 		String userInfo = HttpClientUtil
 				.get(user_info_url.replace("ACCESS_TOKEN", access_token).replace("OPENID", openid));
+		System.out.println("userInfo"+userInfo);
 		JSONObject json = JSONObject.parseObject(userInfo);
 		String openId = json.getString("openid");
 		String nickname = json.getString("nickname");
 		String sex = null;
 		String sexNum = json.getString("sex");
-		if (sexNum.equals("1")) {
+		if (sexNum.equals("0")) {
 			sex = "男";
-		} else if (sexNum.equals("2")) {
+		} else if (sexNum.equals("1")) {
 			sex = "女";
 		} else {
 			sex = "未知";

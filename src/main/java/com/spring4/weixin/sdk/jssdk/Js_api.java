@@ -8,8 +8,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.spring4.weixin.utils.HttpClientUtil;
 import com.spring4.weixin.utils.PropertiesUtil;
 import com.spring4.weixin.utils.SHA1Util;
+
 /**
- * Date:2017年7月12日15:58:21 
+ * Date:2017年7月12日15:58:21
+ * 
  * @author spring4
  */
 public class Js_api {
@@ -28,6 +30,9 @@ public class Js_api {
 	 * @throws UnsupportedEncodingException
 	 */
 	public JsConfig getSign(String jsapi_ticket) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("getSign__jsapi_ticket---:" + jsapi_ticket);
+		}
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		long time = System.currentTimeMillis() / 1000;
 		String str = "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + uuid + "&timestamp=" + time + "&url="
@@ -47,6 +52,10 @@ public class Js_api {
 	 */
 	public JsApiTicket getJsApiTicket(String access_Token) {
 		String ticket = HttpClientUtil.get(jsapi.replace("ACCESS_TOKEN", access_Token));
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("getJsApiTicket__access_Token---:" + access_Token);
+			System.out.println("getJsApiTicket__return_ticket---:" + ticket);
+		}
 		System.out.println(ticket);
 		JSONObject jsonObject = JSONObject.parseObject(ticket);
 		String jsApiTicket = jsonObject.getString("ticket");

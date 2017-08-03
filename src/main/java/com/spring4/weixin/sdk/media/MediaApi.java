@@ -8,8 +8,11 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 import com.spring4.weixin.sdk.VerifyKit;
 import com.spring4.weixin.utils.HttpClientUtil;
+import com.spring4.weixin.utils.PropertiesUtil;
+
 /**
- * Date:2017年7月13日15:21:21 
+ * Date:2017年7月13日15:21:21
+ * 
  * @author spring4
  */
 public class MediaApi {
@@ -26,6 +29,11 @@ public class MediaApi {
 	 */
 	public String upload_temp_media(String access_token, String type, String fileUrl) throws IOException {
 		String media = HttpClientUtil.uploadMedia(access_token, type, fileUrl);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------upload_temp_media------");
+			System.out.println(media);
+			System.out.println("--------upload_temp_media------");
+		}
 		return media;
 	}
 
@@ -37,6 +45,12 @@ public class MediaApi {
 			json = JSON.toJSONString(mediaArticles);
 		}
 		String media_id_json = HttpClientUtil.postJson(newsUrl, json);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------addNews------");
+			System.out.println(json);
+			System.out.println("media_id_json----" + media_id_json);
+			System.out.println("--------addNews------");
+		}
 		return media_id_json;
 	}
 
@@ -51,6 +65,11 @@ public class MediaApi {
 	 */
 	public String upload_image(String access_token, String fileUrl) throws IOException {
 		String url = HttpClientUtil.uploadImg(access_token, fileUrl);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------upload_image------");
+			System.out.println(url);
+			System.out.println("--------upload_image------");
+		}
 		return url;
 	}
 
@@ -66,6 +85,11 @@ public class MediaApi {
 	 */
 	public String upload_material_media(String access_token, String type, String fileUrl) throws IOException {
 		String media = HttpClientUtil.uploadMaterial(access_token, type, fileUrl);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------upload_material_media------");
+			System.out.println(media);
+			System.out.println("--------upload_material_media------");
+		}
 		return media;
 	}
 
@@ -93,6 +117,12 @@ public class MediaApi {
 		m.put("introduction", introduction);
 		String json = JSON.toJSONString(m);
 		String uploadMaterial = HttpClientUtil.uploadMaterial(access_token, type, fileUrl, json);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------upload_video------");
+			System.out.println(json);
+			System.out.println("uploadMaterial----" + uploadMaterial);
+			System.out.println("--------upload_video------");
+		}
 		return uploadMaterial;
 	}
 
@@ -112,6 +142,12 @@ public class MediaApi {
 		dataMap.put("media_id", media_id);
 		String json = JSON.toJSONString(dataMap);
 		HttpClientUtil.downLoad(access_token, json, url);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------getMaterial------");
+			System.out.println(json);
+			System.out.println("url---" + url);
+			System.out.println("--------getMaterial------");
+		}
 	}
 
 	private String del_media_url = "https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=ACCESS_TOKEN";
@@ -126,6 +162,11 @@ public class MediaApi {
 		m.put("media_id", mediaId);
 		String json = JSON.toJSONString(m);
 		String result = HttpClientUtil.postJson(del_media_url.replace("access_token", access_token), json);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------del_material_media------");
+			System.out.println(json);
+			System.out.println("--------del_material_media------");
+		}
 		VerifyKit.verify(result);
 	}
 
@@ -150,6 +191,12 @@ public class MediaApi {
 		dataMap.put("articles", mediaArticles);
 		String jsonString = JSON.toJSONString(dataMap);
 		String json = HttpClientUtil.postJson(url, jsonString);
+		if (PropertiesUtil.isDebug()) {
+			System.out.println("--------del_material_media------");
+			System.out.println(json);
+			System.out.println("url---" + url);
+			System.out.println("--------del_material_media------");
+		}
 		VerifyKit.verify(json);
 	}
 

@@ -46,7 +46,7 @@ public class WeiXinMessageHandel {
 	private String defaultMessageHandel = "com.spring4.weixin.sdk.wx.DefaultHandelImp";
 
 	public String getOutMsg(String inMsg) {
-		DefaultHandelImp handel = null;
+		DefaultHandel handel = null;
 		// 开发模式输出微信服务发送过来的 xml 消息
 		if (ApiConfigKit.isDevMode()) {
 			System.out.println("接收消息:");
@@ -63,7 +63,7 @@ public class WeiXinMessageHandel {
 			Class<?> z = Class.forName(defaultMessageHandel);
 			try {
 				// 实例化处理器
-				handel = (DefaultHandelImp) z.newInstance();
+				handel = (DefaultHandel) z.newInstance();
 			} catch (InstantiationException e) {
 				System.err.println("初始化异常:" + e.getMessage());
 			} catch (IllegalAccessException e) {
