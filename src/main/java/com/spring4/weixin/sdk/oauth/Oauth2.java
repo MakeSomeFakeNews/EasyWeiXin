@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.spring4.utils.HttpClientUtil;
+import com.spring4.utils.PropertiesUtil;
 import com.spring4.weixin.sdk.VerifyKit;
-import com.spring4.weixin.utils.HttpClientUtil;
-import com.spring4.weixin.utils.PropertiesUtil;
 
 public class Oauth2 {
 	private String baseUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect ";

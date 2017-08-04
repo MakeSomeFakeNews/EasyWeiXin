@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.spring4.weixin.utils.SHA1Util;
+import com.spring4.utils.SHA1Util;
 
 /**
  * Date :2017年7月12日10:13:11

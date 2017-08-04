@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
+import com.spring4.utils.HttpClientUtil;
+import com.spring4.utils.PropertiesUtil;
 import com.spring4.weixin.sdk.VerifyKit;
-import com.spring4.weixin.utils.HttpClientUtil;
-import com.spring4.weixin.utils.PropertiesUtil;
 
 /**
  * Date :2017年7月12日10:13:11

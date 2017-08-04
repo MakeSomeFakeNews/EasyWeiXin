@@ -5,9 +5,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 import com.alibaba.fastjson.JSONObject;
-import com.spring4.weixin.utils.HttpClientUtil;
-import com.spring4.weixin.utils.PropertiesUtil;
-import com.spring4.weixin.utils.SHA1Util;
+import com.spring4.utils.HttpClientUtil;
+import com.spring4.utils.PropertiesUtil;
+import com.spring4.utils.SHA1Util;
 
 /**
  * Date:2017年7月12日15:58:21

@@ -1,4 +1,4 @@
-package com.spring4.weixin.utils;
+package com.spring4.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

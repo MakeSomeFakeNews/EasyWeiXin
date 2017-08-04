@@ -8,8 +8,8 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.spring4.utils.HttpClientUtil;
 import com.spring4.weixin.sdk.VerifyKit;
-import com.spring4.weixin.utils.HttpClientUtil;
 /**
  * Date:2017年7月12日15:51:21 
  * @author spring4

@@ -6,6 +6,8 @@ import java.util.List;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.spring4.utils.StrKit;
+import com.spring4.utils.XmlHelper;
 import com.spring4.weixin.sdk.msg.in.InEquDataMsg;
 import com.spring4.weixin.sdk.msg.in.InImageMessage;
 import com.spring4.weixin.sdk.msg.in.InLinkMessage;
@@ -42,8 +44,6 @@ import com.spring4.weixin.sdk.msg.in.event.InVerifyFailEvent;
 import com.spring4.weixin.sdk.msg.in.event.InVerifySuccessEvent;
 import com.spring4.weixin.sdk.msg.in.event.InWifiEvent;
 import com.spring4.weixin.sdk.msg.in.event.ScanInfo;
-import com.spring4.weixin.utils.StrKit;
-import com.spring4.weixin.utils.XmlHelper;
 
 public class InMessageResolve {
 	private InMessageResolve() {

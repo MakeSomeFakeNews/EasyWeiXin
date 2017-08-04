@@ -1,4 +1,4 @@
-package com.spring4.weixin.utils;
+package com.spring4.utils;
 
 public class ClassUtils {
 	 /**

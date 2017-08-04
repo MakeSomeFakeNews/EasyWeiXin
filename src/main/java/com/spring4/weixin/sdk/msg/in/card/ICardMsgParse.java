@@ -1,6 +1,6 @@
 package com.spring4.weixin.sdk.msg.in.card;
 
-import com.spring4.weixin.utils.XmlHelper;
+import com.spring4.utils.XmlHelper;
 
 /**
  * 卡券消息解析接口

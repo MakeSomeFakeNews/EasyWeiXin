@@ -1,6 +1,6 @@
 package com.spring4.weixin.sdk.msg.in;
 
-import com.spring4.weixin.utils.XmlHelper;
+import com.spring4.utils.XmlHelper;
 
 public class InNotDefinedMessage extends InMessage {
 	 /**

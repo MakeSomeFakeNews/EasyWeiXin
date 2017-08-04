@@ -1,7 +1,7 @@
 package com.spring4.weixin.sdk.msg.in.card;
 
+import com.spring4.utils.XmlHelper;
 import com.spring4.weixin.sdk.msg.in.event.InEventMessage;
-import com.spring4.weixin.utils.XmlHelper;
 
 /**
  * 微信会员卡卡券

@@ -1,5 +1,7 @@
 package com.spring4.weixin.sdk.wx;
 
+import com.spring4.utils.ApiConfigKit;
+import com.spring4.utils.PropertiesUtil;
 import com.spring4.weixin.sdk.msg.InMessageResolve;
 import com.spring4.weixin.sdk.msg.in.InEquDataMsg;
 import com.spring4.weixin.sdk.msg.in.InImageMessage;
@@ -36,8 +38,6 @@ import com.spring4.weixin.sdk.msg.in.event.InUpLoadLocationEvent;
 import com.spring4.weixin.sdk.msg.in.event.InVerifyFailEvent;
 import com.spring4.weixin.sdk.msg.in.event.InVerifySuccessEvent;
 import com.spring4.weixin.sdk.msg.in.event.InWifiEvent;
-import com.spring4.weixin.utils.ApiConfigKit;
-import com.spring4.weixin.utils.PropertiesUtil;
 /**
  * Date:2017年7月1日1:51:21 
  * @author spring4

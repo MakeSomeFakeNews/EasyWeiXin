@@ -1,8 +1,8 @@
 package com.spring4.weixin.sdk.token;
 
 import com.alibaba.fastjson.JSONObject;
-import com.spring4.weixin.utils.HttpClientUtil;
-import com.spring4.weixin.utils.PropertiesUtil;
+import com.spring4.utils.HttpClientUtil;
+import com.spring4.utils.PropertiesUtil;
 
 /**
  * @author spring4<br>
