@@ -1,13 +1,18 @@
 package com.spring4.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.KeyStore;
 
+import javax.net.ssl.SSLContext;
+
+import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -16,6 +21,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -24,6 +30,7 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSONObject;
@@ -68,10 +75,83 @@ public class HttpClientUtil {
 
 	}
 
+	public static String post(String url, String para) {
+		HttpPost post = new HttpPost(url);
+		try {
+			StringEntity entity = new StringEntity(para, ContentType.create("application/json", "utf-8"));
+			System.out.println(entity);
+			String response = null;
+			post.setEntity(entity);
+			HttpResponse httpResponse = client.execute(post);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity httpEntity = httpResponse.getEntity();
+				response = new String(EntityUtils.toString(httpEntity).getBytes("8859_1"));
+
+			}
+			return response;
+		} catch (Exception e) {
+			throw new RuntimeException("post请求出现异常" + e.getMessage());
+		}
+
+	}
+
+	public static String post(String url, String para, String cerPath, String cerPass) {
+		try {
+			KeyStore keyStore = KeyStore.getInstance("PKCS12");
+			FileInputStream instream = new FileInputStream(new File(cerPath));
+			try {
+				keyStore.load(instream, cerPass.toCharArray());
+			} finally {
+				instream.close();
+			}
+
+			// Trust own CA and all self-signed certs
+			SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, "1313329201".toCharArray()).build();
+			// Allow TLSv1 protocol only
+			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { "TLSv1" },
+					null, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+			CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+			HttpPost post = new HttpPost(url);
+
+			StringEntity entity = new StringEntity(para, Consts.UTF_8);
+			System.out.println(entity);
+			String response = null;
+			post.setEntity(entity);
+			HttpResponse httpResponse = httpclient.execute(post);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity httpEntity = httpResponse.getEntity();
+				response = new String(EntityUtils.toString(httpEntity).getBytes("8859_1"));
+
+			}
+			httpclient.close();
+			return response;
+		} catch (Exception e) {
+			throw new RuntimeException("post请求出现异常" + e.getMessage());
+		}
+
+	}
+
 	public static String postJson(String url) {
 		HttpPost post = new HttpPost(url);
 		try {
 			post.setHeader("Content-type", "application/json");
+			String response = null;
+			HttpResponse httpResponse = client.execute(post);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity httpEntity = httpResponse.getEntity();
+				response = new String(EntityUtils.toString(httpEntity).getBytes("8859_1"));
+
+			}
+			return response;
+		} catch (Exception e) {
+			throw new RuntimeException("post请求出现异常" + e.getMessage());
+		}
+
+	}
+
+	public static String post(String url) {
+		HttpPost post = new HttpPost(url);
+		try {
 			String response = null;
 			HttpResponse httpResponse = client.execute(post);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
@@ -355,70 +435,67 @@ public class HttpClientUtil {
 		return media_id;
 	}
 
-	public static void downLoad(String localFileName,String para,String url) {
+	public static void downLoad(String localFileName, String para, String url) {
 		@SuppressWarnings("resource")
 		DefaultHttpClient httpClient = new DefaultHttpClient();
-        OutputStream out = null;
-        InputStream in = null;
-        
-        try {
-        	HttpPost httpPost = new HttpPost("");
-        	httpPost.setHeader("Content-type", "application/json");
+		OutputStream out = null;
+		InputStream in = null;
+
+		try {
+			HttpPost httpPost = new HttpPost("");
+			httpPost.setHeader("Content-type", "application/json");
 			StringEntity entitys = new StringEntity(para, ContentType.create("application/json", "utf-8"));
-            httpPost.setEntity(entitys);
-			
+			httpPost.setEntity(entitys);
 
-            HttpResponse httpResponse = httpClient.execute(httpPost);
-            HttpEntity entity = httpResponse.getEntity();
-            in = entity.getContent();
+			HttpResponse httpResponse = httpClient.execute(httpPost);
+			HttpEntity entity = httpResponse.getEntity();
+			in = entity.getContent();
 
-            long length = entity.getContentLength();
-            if (length <= 0) {
-                System.out.println("下载文件不存在！");
-                return;
-            }
+			long length = entity.getContentLength();
+			if (length <= 0) {
+				System.out.println("下载文件不存在！");
+				return;
+			}
 
-            System.out.println("The response value of token:" + httpResponse.getFirstHeader("token"));
+			System.out.println("The response value of token:" + httpResponse.getFirstHeader("token"));
 
-            File file = new File(localFileName);
-            if(!file.exists()){
-                file.createNewFile();
-            }
-            
-            out = new FileOutputStream(file);  
-            byte[] buffer = new byte[4096];
-            int readLength = 0;
-            while ((readLength=in.read(buffer)) > 0) {
-                byte[] bytes = new byte[readLength];
-                System.arraycopy(buffer, 0, bytes, 0, readLength);
-                out.write(bytes);
-            }
-            
-            out.flush();
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
-            try {
-                if(in != null){
-                    in.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-            try {
-                if(out != null){
-                    out.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-	
-	
-	
+			File file = new File(localFileName);
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+			out = new FileOutputStream(file);
+			byte[] buffer = new byte[4096];
+			int readLength = 0;
+			while ((readLength = in.read(buffer)) > 0) {
+				byte[] bytes = new byte[readLength];
+				System.arraycopy(buffer, 0, bytes, 0, readLength);
+				out.write(bytes);
+			}
+
+			out.flush();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				if (out != null) {
+					out.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
