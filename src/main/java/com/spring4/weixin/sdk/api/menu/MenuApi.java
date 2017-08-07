@@ -25,6 +25,16 @@ import com.spring4.weixin.sdk.VerifyKit;
 public class MenuApi {
 	private String MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 
+	private String testMenu = "https://api.weixin.qq.com/cgi-bin/menu/trymatch?access_token=ACCESS_TOKEN";
+
+	private String delConditionaMenu = "https://api.weixin.qq.com/cgi-bin/menu/delconditional?access_token=ACCESS_TOKEN";
+
+	private String createConditionalMenu = "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=ACCESS_TOKEN";
+
+	private String delMenu = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
+
+	private String MENU_SEARCH = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
+
 	public void createMenu(WeixinMenu menu, String access_token) {
 		List<WeixinMenu> wm = new ArrayList<WeixinMenu>();
 		wm.add(menu);
@@ -42,8 +52,6 @@ public class MenuApi {
 
 	}
 
-	private String MENU_SEARCH = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
-
 	public String getMenu(String access_token) {
 		String menu = HttpClientUtil.get(MENU_SEARCH.replace("ACCESS_TOKEN", access_token));
 		if (PropertiesUtil.isDebug()) {
@@ -53,8 +61,6 @@ public class MenuApi {
 		}
 		return menu;
 	}
-
-	private String delMenu = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
 
 	public void delMenu(String access_token) {
 		String resString = HttpClientUtil.get(delMenu.replace("ACCESS_TOKEN", access_token));
@@ -66,8 +72,6 @@ public class MenuApi {
 		VerifyKit.verify(resString);
 	}
 
-	private String createConditionalMenu = "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=ACCESS_TOKEN";
-
 	public String createConditionalMenu(String access_token, String jsonStr) {
 		String menuId = HttpClientUtil.postJson(createConditionalMenu.replace("ACCESS_TOKEN", access_token), jsonStr);
 		if (PropertiesUtil.isDebug()) {
@@ -77,8 +81,6 @@ public class MenuApi {
 		}
 		return menuId;
 	}
-
-	private String delConditionaMenu = "https://api.weixin.qq.com/cgi-bin/menu/delconditional?access_token=ACCESS_TOKEN";
 
 	/**
 	 * 请求示例 { "menuid":"208379533" }
@@ -92,8 +94,6 @@ public class MenuApi {
 		}
 		VerifyKit.verify(resString);
 	}
-
-	private String testMenu = "https://api.weixin.qq.com/cgi-bin/menu/trymatch?access_token=ACCESS_TOKEN";
 
 	/**
 	 * 请求示例 { "user_id":"weixin" }

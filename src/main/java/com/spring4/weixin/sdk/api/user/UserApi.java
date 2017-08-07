@@ -17,6 +17,11 @@ import com.spring4.weixin.sdk.VerifyKit;
 public class UserApi {
 	private String user_name_url = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=";
 
+	private String get_user_list_url = "https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=";
+
+	//https://api.weixin.qq.com/sns/userinfo
+	private String user_info = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+
 	/**
 	 * 设置用户备注名 开发者可以通过该接口对指定用户设置备注名，该接口暂时开放给微信认证的服务号。 接口调用请求说明 access_token
 	 * 调用接口凭证 openid 用户标识 remark 新的备注名，长度必须小于30字符
@@ -33,9 +38,6 @@ public class UserApi {
 		String json = HttpClientUtil.postJson(user_name_url + access_token, jsonString);
 		VerifyKit.verify(json);
 	}
-	//https://api.weixin.qq.com/sns/userinfo
-	private String user_info = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
-
 	/**
 	 * 获取用户基本信息(UnionID机制)
 	 * 在关注者与公众号产生消息交互后，公众号可获得关注者的OpenID（加密后的微信号，每个用户对每个公众号的OpenID是唯一的。对于不同公众号，同一用户的openid不同）。公众号可通过本接口来根据OpenID获取用户基本信息，包括昵称、头像、性别、所在城市、语言和关注时间。
@@ -54,7 +56,6 @@ public class UserApi {
 
 	}
 
-	private String get_user_list_url = "https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=";
 	/**
 	 * 批量获取用户
 	 * @param access_token

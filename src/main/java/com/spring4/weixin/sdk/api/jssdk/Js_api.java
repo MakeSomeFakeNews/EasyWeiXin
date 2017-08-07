@@ -15,6 +15,8 @@ import com.spring4.utils.SHA1Util;
  * @author spring4
  */
 public class Js_api {
+	private String jsapi = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
+
 	/**
 	 * 获得config接口注入参数
 	 * 
@@ -42,8 +44,6 @@ public class Js_api {
 		return new JsConfig(PropertiesUtil.getAppId(), time, uuid, signature);
 
 	}
-
-	private String jsapi = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
 
 	/**
 	 * 获取jsapi_ticket 有效期7200秒，和 api_ticket不一樣

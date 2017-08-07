@@ -16,6 +16,20 @@ public class UserTagApi {
 
 	private String create_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=";
 
+	private String tag_list_url = "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=";
+
+	private String updata_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=";
+
+	private String del_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=";
+
+	private String GET_USER_URL = "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=";
+
+	private String BATCH_TAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=";
+
+	private String BATCH_UNTAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=";
+
+	private String GET_ID_LIST_URL = "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=";
+
 	/**
 	 * 参数说明 参数 说明 access_token 调用接口凭据 name 标签名（30个字符以内） 返回说明（正常时返回的json数据包示例） {
 	 * "tag":{ "id":134,//标签id "name":"广东" } } 返回参数说明 参数 说明 id 标签id，由微信分配
@@ -35,8 +49,6 @@ public class UserTagApi {
 		String tagId = object.getString("id");
 		return tagId;
 	}
-
-	private String tag_list_url = "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=";
 
 	/**
 	 * 
@@ -62,8 +74,6 @@ public class UserTagApi {
 		return tags;
 	}
 
-	private String updata_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=";
-
 	/**
 	 * 编辑标签
 	 * 
@@ -81,8 +91,6 @@ public class UserTagApi {
 		VerifyKit.verify(json);
 	}
 
-	private String del_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=";
-
 	/**
 	 * 删除标签
 	 * 
@@ -98,8 +106,6 @@ public class UserTagApi {
 		String json = HttpClientUtil.postJson(del_tag_url + access_token, jsonString);
 		VerifyKit.verify(json);
 	}
-
-	private String GET_USER_URL = "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=";
 
 	/**
 	 * 根据标签获取标签下粉丝列表
@@ -132,8 +138,6 @@ public class UserTagApi {
 
 	}
 
-	private String BATCH_TAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=";
-
 	/**
 	 * 标签功能目前支持公众号为用户打上最多20个标签。 1. 批量为用户打标签 接口调用请求说明
 	 * 
@@ -151,8 +155,6 @@ public class UserTagApi {
 
 	}
 
-	private String BATCH_UNTAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=";
-
 	/**
 	 * 批量为用户取消标签
 	 * 
@@ -168,8 +170,6 @@ public class UserTagApi {
 		String json = HttpClientUtil.postJson(BATCH_UNTAGGING_URL + access_token, jsonString);
 		VerifyKit.verify(json);
 	}
-
-	private String GET_ID_LIST_URL = "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=";
 
 	/**
 	 * 获取用户身上的tag
