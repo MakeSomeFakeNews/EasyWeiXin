@@ -46,8 +46,8 @@ public class Js_api {
 	}
 
 	/**
-	 * 获取jsapi_ticket 有效期7200秒，和 api_ticket不一樣
-	 * 
+	 * 获取jsapi_ticket 有效期7200秒，和 api_ticket不一樣<br>
+	 * access_token 是基础的access_token,不是登录授权那个，使用TokenApi获取
 	 * @param jsapi_ticket
 	 */
 	public JsApiTicket getJsApiTicket(String access_Token) {

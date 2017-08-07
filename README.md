@@ -8,7 +8,28 @@
 提供MenuAPI、UserApi、UserTagAPI、MediaAPI、OauthAPI。。。。等等等等用于实现所有高级接口功能，使用极其简单<br>
 
 Demo---传送门：(https://github.com/adminzhou/EasyWeChatDemo)
-## 关于函数名 
+# API列表
+## 卡券相关
+### CardApi 卡券相关接口
+### CardCodeApi 核销卡券接口
+### CardExApi 特殊（高级）卡券接口
+### CardPayApi 付费卡券点接口
+### MemberCardApi 会员卡接口
+## 网页开发相关
+### Js_api jssdk相关
+### Oauth2Api 网页授权相关
+### PaymentApi 支付接口
+### ReadPackApi红包接口
+## 其他接口
+### MediaApi 媒体相关接口
+### MenuApi 菜单相关接口
+### UserApi 用户相关接口
+### UserTagApi 用户标签相关
+### BlackListApi 黑名单相关
+### TokenApi 基础token相关
+## 小程序
+### 。。。。。。。。。。。。
+# 关于函数名 
  我喜欢get_xxx_xxx的方式命名。虽然 ！！不规范，   那你来打我啊
 # 使用步骤
 ## 1.下载EasyWeChat
