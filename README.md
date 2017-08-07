@@ -1,4 +1,5 @@
 # EasyWeiXin
+如果你觉得还不错的话，点击star，fork支持一下吧
 让微信开发变得更加简单
 作者:QQ:[1239181712](http://wpa.qq.com/msgrd?v=3&uin=1239181712&site=qq&menu=yes)<br>
 交流群:454197074
