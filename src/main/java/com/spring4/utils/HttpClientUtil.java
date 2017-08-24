@@ -105,9 +105,7 @@ public class HttpClientUtil {
 				instream.close();
 			}
 
-			// Trust own CA and all self-signed certs
-			SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, "1313329201".toCharArray()).build();
-			// Allow TLSv1 protocol only
+			SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, cerPass.toCharArray()).build();
 			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { "TLSv1" },
 					null, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 			CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
