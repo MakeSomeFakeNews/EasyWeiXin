@@ -15,7 +15,7 @@ import com.spring4.utils.SHA1Util;
  * @author spring4
  */
 public class Js_api {
-	private String jsapi = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
+	private static String jsapi = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
 
 	/**
 	 * 获得config接口注入参数
@@ -31,7 +31,7 @@ public class Js_api {
 	 * @throws NoSuchAlgorithmException
 	 * @throws UnsupportedEncodingException
 	 */
-	public JsConfig getSign(String jsapi_ticket) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public static JsConfig getSign(String jsapi_ticket) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("getSign__jsapi_ticket---:" + jsapi_ticket);
 		}
@@ -50,7 +50,7 @@ public class Js_api {
 	 * access_token 是基础的access_token,不是登录授权那个，使用TokenApi获取
 	 * @param jsapi_ticket
 	 */
-	public JsApiTicket getJsApiTicket(String access_Token) {
+	public static JsApiTicket getJsApiTicket(String access_Token) {
 		String ticket = HttpClientUtil.get(jsapi.replace("ACCESS_TOKEN", access_Token));
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("getJsApiTicket__access_Token---:" + access_Token);

@@ -13,15 +13,15 @@ import com.spring4.utils.HttpClientUtil;
  */
 public class MessageApi {
 
-	private String sendAllUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=";
+	private static String sendAllUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=";
 
-	private String sendUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=";
+	private static String sendUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=";
 
-	private String previewUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=";
+	private static String previewUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=";
 
-	private String getUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/get?access_token=";
+	private static String getUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/get?access_token=";
 
-	private String deleteUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/delete?access_token=";
+	private static String deleteUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/delete?access_token=";
 
 	/**
 	 * 根据分组进行群发【订阅号与服务号认证后均可用】
@@ -30,7 +30,7 @@ public class MessageApi {
 	 *            json字符串
 	 * @return {String}
 	 */
-	public String sendAll(String jsonStr, String access_token) {
+	public static String sendAll(String jsonStr, String access_token) {
 		return HttpClientUtil.postJson(sendAllUrl + access_token, jsonStr);
 	}
 
@@ -41,7 +41,7 @@ public class MessageApi {
 	 *            json字符串
 	 * @return {String}
 	 */
-	public String send(String jsonStr, String access_token) {
+	public static String send(String jsonStr, String access_token) {
 		return HttpClientUtil.postJson(sendUrl + access_token, jsonStr);
 	}
 
@@ -52,7 +52,7 @@ public class MessageApi {
 	 *            json字符串
 	 * @return {String}
 	 */
-	public String preview(String jsonStr, String access_token) {
+	public static String preview(String jsonStr, String access_token) {
 		return HttpClientUtil.postJson(previewUrl + access_token, jsonStr);
 	}
 
@@ -63,7 +63,7 @@ public class MessageApi {
 	 *            群发消息后返回的消息id
 	 * @return json
 	 */
-	public String get(String msgId, String access_token) {
+	public static String get(String msgId, String access_token) {
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("msg_id", msgId);
 		String jsonString = JSON.toJSONString(m);
@@ -77,7 +77,7 @@ public class MessageApi {
 	 *            群发消息后返回的消息id
 	 * @return json
 	 */
-	public String delete(String msgId, String access_token) {
+	public static String delete(String msgId, String access_token) {
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("msg_id", msgId);
 		String jsonString = JSON.toJSONString(m);

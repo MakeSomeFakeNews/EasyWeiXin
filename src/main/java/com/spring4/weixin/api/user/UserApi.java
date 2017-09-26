@@ -10,17 +10,19 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.spring4.utils.HttpClientUtil;
 import com.spring4.weixin.sdk.VerifyKit;
+
 /**
- * Date:2017年7月12日15:51:21 
+ * Date:2017年7月12日15:51:21
+ * 
  * @author spring4
  */
 public class UserApi {
-	private String user_name_url = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=";
+	private static String user_name_url = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=";
 
-	private String get_user_list_url = "https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=";
+	private static String get_user_list_url = "https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=";
 
-	//https://api.weixin.qq.com/sns/userinfo
-	private String user_info = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+	// https://api.weixin.qq.com/sns/userinfo
+	private static String user_info = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 
 	/**
 	 * 设置用户备注名 开发者可以通过该接口对指定用户设置备注名，该接口暂时开放给微信认证的服务号。 接口调用请求说明 access_token
@@ -30,7 +32,7 @@ public class UserApi {
 	 * @param openId
 	 * @param remark
 	 */
-	public void set_user_name(String access_token, String openId, String remark) {
+	public static void set_user_name(String access_token, String openId, String remark) {
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("openid", openId);
 		m.put("remark", remark);
@@ -38,6 +40,7 @@ public class UserApi {
 		String json = HttpClientUtil.postJson(user_name_url + access_token, jsonString);
 		VerifyKit.verify(json);
 	}
+
 	/**
 	 * 获取用户基本信息(UnionID机制)
 	 * 在关注者与公众号产生消息交互后，公众号可获得关注者的OpenID（加密后的微信号，每个用户对每个公众号的OpenID是唯一的。对于不同公众号，同一用户的openid不同）。公众号可通过本接口来根据OpenID获取用户基本信息，包括昵称、头像、性别、所在城市、语言和关注时间。
@@ -49,7 +52,7 @@ public class UserApi {
 	 * @param openid
 	 * @return
 	 */
-	public UserInfo get_user_info(String access_token, String openid) {
+	public static UserInfo get_user_info(String access_token, String openid) {
 		String string = HttpClientUtil.get(user_info.replace("ACCESS_TOKEN", access_token).replace("OPENID", openid));
 		System.out.println(string);
 		return user_info(string, openid);
@@ -58,11 +61,12 @@ public class UserApi {
 
 	/**
 	 * 批量获取用户
+	 * 
 	 * @param access_token
 	 * @param openid
 	 * @return
 	 */
-	public List<UserInfo> get_user_info(String access_token, List<String> openid) {
+	public static List<UserInfo> get_user_info(String access_token, List<String> openid) {
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		Map<String, List<Map<String, String>>> map = new HashMap<String, List<Map<String, String>>>();
 
@@ -89,7 +93,7 @@ public class UserApi {
 		return ulist;
 	}
 
-	private UserInfo user_info(String json_, String openid) {
+	private static UserInfo user_info(String json_, String openid) {
 		JSONObject json = JSONObject.parseObject(json_);
 		String nickname = json.getString("nickname");
 		String sex = null;

@@ -14,21 +14,21 @@ import com.spring4.utils.HttpClientUtil;
  */
 public class CardCodeApi {
 	// https://mp.weixin.qq.com/wiki?action=doc&id=mp1451025239&t=0.5997588644623877#1.1
-	private String getCodeUrl = "https://api.weixin.qq.com/card/code/get?access_token=";
+	private static String getCodeUrl = "https://api.weixin.qq.com/card/code/get?access_token=";
 
-	private String consumeCode = "https://api.weixin.qq.com/card/code/consume?access_token=";
+	private static String consumeCode = "https://api.weixin.qq.com/card/code/consume?access_token=";
 
-	private String decryptCode = "https://api.weixin.qq.com/card/code/decrypt?access_token=";
+	private static String decryptCode = "https://api.weixin.qq.com/card/code/decrypt?access_token=";
 
-	private String setDeposit = "http://api.weixin.qq.com/card/code/deposit?access_token=";
+	private static String setDeposit = "http://api.weixin.qq.com/card/code/deposit?access_token=";
 
-	private String getDepositCount = "http://api.weixin.qq.com/card/code/getdepositcount?access_token=";
+	private static String getDepositCount = "http://api.weixin.qq.com/card/code/getdepositcount?access_token=";
 
-	private String checkCode = "http://api.weixin.qq.com/card/code/checkcode?access_token=";
+	private static String checkCode = "http://api.weixin.qq.com/card/code/checkcode?access_token=";
 
-	private String update = "https://api.weixin.qq.com/card/code/update?access_token=";
+	private static String update = "https://api.weixin.qq.com/card/code/update?access_token=";
 
-	private String mark = "https://api.weixin.qq.com/card/code/mark?access_token=";
+	private static String mark = "https://api.weixin.qq.com/card/code/mark?access_token=";
 
 	/**
 	 * 查询Code接口
@@ -44,7 +44,7 @@ public class CardCodeApi {
 	 *            是否校验code核销状态，填入true和false时的code异常状态返回数据不同。
 	 * @return {jsonResult}
 	 */
-	public String get(String code, String cardId, String access_token, boolean checkConsume) {
+	public static String get(String code, String cardId, String access_token, boolean checkConsume) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("code", code);
 		if (cardId != null) {
@@ -65,7 +65,7 @@ public class CardCodeApi {
 	 *            需核销的Code码。
 	 * @return {jsonResult}
 	 */
-	public String consume(String code, String access_token) {
+	public static String consume(String code, String access_token) {
 		return consume(code, null, access_token);
 	}
 
@@ -80,7 +80,7 @@ public class CardCodeApi {
 	 *            card_id卡券ID。创建卡券时use_custom_code填写true时必填。非自定义Code不必填写。
 	 * @return {jsonResult}
 	 */
-	public String consume(String code, String cardId, String access_token) {
+	public static String consume(String code, String cardId, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("code", code);
 		if (cardId != null) {
@@ -102,7 +102,7 @@ public class CardCodeApi {
 	 *            是 string(20) 当前卡券使用者的openid，通常通过网页授权登录或自定义url跳转参数获得。
 	 * @return {jsonResult}
 	 */
-	public String consume_online(String code, String openid, String access_token) {
+	public static String consume_online(String code, String openid, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("code", code);
 		m.put(openid, openid);
@@ -120,7 +120,7 @@ public class CardCodeApi {
 	 *            经过加密的Code码。
 	 * @return {jsonResult}
 	 */
-	public String decrypt(String encryptCode, String access_token) {
+	public static String decrypt(String encryptCode, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("encrypt_code", encryptCode);
 		String jsonString = JSON.toJSONString(m);
@@ -139,7 +139,7 @@ public class CardCodeApi {
 	 *            需要进行导入code的卡券ID。
 	 * @return {jsonResult}
 	 */
-	public String set_deposit(String cardId, List<String> codeList, String access_token) {
+	public static String set_deposit(String cardId, List<String> codeList, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		String jsonString = JSON.toJSONString(m);
@@ -156,7 +156,7 @@ public class CardCodeApi {
 	 *            需要进行导入code的卡券ID。
 	 * @return {jsonResult}
 	 */
-	public String get_deposit_count(String cardId, String access_token) {
+	public static String get_deposit_count(String cardId, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		String jsonString = JSON.toJSONString(m);
@@ -175,7 +175,7 @@ public class CardCodeApi {
 	 *            已经微信卡券后台的自定义code，上限为100个。
 	 * @return {jsonResult}
 	 */
-	public String check_code(String cardId, List<String> codeList, String access_token) {
+	public static String check_code(String cardId, List<String> codeList, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		m.put("code", codeList);
@@ -193,7 +193,7 @@ public class CardCodeApi {
 	 *            变更后的有效Code码。
 	 * @return {jsonResult}
 	 */
-	public String update(String code, String newCode, String access_token) {
+	public static String update(String code, String newCode, String access_token) {
 		return update(null, code, newCode, access_token);
 	}
 
@@ -208,7 +208,7 @@ public class CardCodeApi {
 	 *            变更后的有效Code码。
 	 * @return {jsonResult}
 	 */
-	public String update(String cardId, String code, String newCode, String access_token) {
+	public static String update(String cardId, String code, String newCode, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("code", newCode);
 		if (cardId != null) {
@@ -232,7 +232,7 @@ public class CardCodeApi {
 	 *            是 是否要mark（占用）这个code，填写true或者false，表示占用或解除占用。
 	 * @return {jsonResult}
 	 */
-	public String mark_code(String code, String cardId, String openid, String access_token, boolean isMark) {
+	public static String mark_code(String code, String cardId, String openid, String access_token, boolean isMark) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		m.put("code", code);

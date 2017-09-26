@@ -11,33 +11,33 @@ import com.spring4.utils.HttpClientUtil;
  * CardApi.java文件：作用简介 作者:周锦华 日期: 2017年8月7日 上午10:06:33
  */
 public class CardApi {
-	private String create_card_Url = "https://api.weixin.qq.com/card/create?access_token=";
+	private static String create_card_Url = "https://api.weixin.qq.com/card/create?access_token=";
 
-	private String createQrcodeCard = "https://api.weixin.qq.com/card/qrcode/create?access_token=";
+	private static String createQrcodeCard = "https://api.weixin.qq.com/card/qrcode/create?access_token=";
 
-	private String createLandingPageCard = "https://api.weixin.qq.com/card/landingpage/create?access_token=";
+	private static String createLandingPageCard = "https://api.weixin.qq.com/card/landingpage/create?access_token=";
 
-	private String setWhiteList = "https://api.weixin.qq.com/card/testwhitelist/set?access_token=";
+	private static String setWhiteList = "https://api.weixin.qq.com/card/testwhitelist/set?access_token=";
 
-	private String getnewsUrl = "https://api.weixin.qq.com/card/mpnews/gethtml?access_token=";
+	private static String getnewsUrl = "https://api.weixin.qq.com/card/mpnews/gethtml?access_token=";
 
-	private String setPaycell = "https://api.weixin.qq.com/card/testwhitelist/set?access_token=";
+	private static String setPaycell = "https://api.weixin.qq.com/card/testwhitelist/set?access_token=";
 
-	private String setSelfconsumecell = "https://api.weixin.qq.com/card/selfconsumecell/set?access_token=";
+	private static String setSelfconsumecell = "https://api.weixin.qq.com/card/selfconsumecell/set?access_token=";
 
-	private String getCard = "https://api.weixin.qq.com/card/get?access_token=";
+	private static String getCard = "https://api.weixin.qq.com/card/get?access_token=";
 
-	private String getBatch = "https://api.weixin.qq.com/card/batchget?access_token=";
+	private static String getBatch = "https://api.weixin.qq.com/card/batchget?access_token=";
 
-	private String update = "https://api.weixin.qq.com/card/update?access_token=";
+	private static String update = "https://api.weixin.qq.com/card/update?access_token=";
 
-	private String unavailable = "https://api.weixin.qq.com/card/code/unavailable?access_token=";
+	private static String unavailable = "https://api.weixin.qq.com/card/code/unavailable?access_token=";
 
-	private String delete = "https://api.weixin.qq.com/card/delete?access_token=";
+	private static String delete = "https://api.weixin.qq.com/card/delete?access_token=";
 
-	private String modifystock = "https://api.weixin.qq.com/card/modifystock?access_token=";
+	private static String modifystock = "https://api.weixin.qq.com/card/modifystock?access_token=";
 
-	private String getUserCardList = "https://api.weixin.qq.com/card/user/getcardlist?access_token=";
+	private static String getUserCardList = "https://api.weixin.qq.com/card/user/getcardlist?access_token=";
 
 	/**
 	 * 创建二维码接口
@@ -48,7 +48,7 @@ public class CardApi {
 	 *            基础
 	 * @return {json}
 	 */
-	public String create_qrcode(String jsonStr, String access_token) {
+	public static String create_qrcode(String jsonStr, String access_token) {
 		String json = HttpClientUtil.postJson(createQrcodeCard + access_token, jsonStr);
 		return json;
 	}
@@ -60,7 +60,7 @@ public class CardApi {
 	 *            JSON数据
 	 * @return {postJson}
 	 */
-	public String create(String jsonStr, String access_token) {
+	public static String create(String jsonStr, String access_token) {
 		String postJson = HttpClientUtil.postJson(create_card_Url + access_token, jsonStr);
 		return postJson;
 	}
@@ -74,7 +74,7 @@ public class CardApi {
 	 *            基础
 	 * @return {postJson}
 	 */
-	public String set_white_list(String jsonStr, String access_token) {
+	public static String set_white_list(String jsonStr, String access_token) {
 		String postJson = HttpClientUtil.postJson(setWhiteList + access_token, jsonStr);
 		return postJson;
 	}
@@ -88,7 +88,7 @@ public class CardApi {
 	 *            基础
 	 * @return {json}
 	 */
-	public String create_landing_page(String jsonStr, String access_token) {
+	public static String create_landing_page(String jsonStr, String access_token) {
 		String json = HttpClientUtil.postJson(createLandingPageCard + access_token, jsonStr);
 
 		return json;
@@ -103,7 +103,7 @@ public class CardApi {
 	 *            基础
 	 * @return {json}
 	 */
-	public String get_html_mpnews(String cardId, String access_token) {
+	public static String get_html_mpnews(String cardId, String access_token) {
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("card_id", cardId);
 		String jsonString = JSON.toJSONString(m);
@@ -121,7 +121,7 @@ public class CardApi {
 	 *            基础
 	 * @return {json}
 	 */
-	public String set_paycell(String cardId, boolean isOpen, String access_token) {
+	public static String set_paycell(String cardId, boolean isOpen, String access_token) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("card_id", cardId);
 		m.put("is_open", isOpen);
@@ -140,7 +140,7 @@ public class CardApi {
 	 *            基础
 	 * @return {jsonResult}
 	 */
-	public String set_selfconsumecell(String cardId, String access_token, boolean isOpen) {
+	public static String set_selfconsumecell(String cardId, String access_token, boolean isOpen) {
 		return set_selfconsumecell(cardId, access_token, isOpen, false, false);
 	}
 
@@ -159,7 +159,7 @@ public class CardApi {
 	 *            用户核销时是否需要备注核销金额，填true/false，默认为false
 	 * @return {jsonResult}
 	 */
-	public String set_selfconsumecell(String cardId, String access_token, boolean isOpen, boolean needVerifyCod,
+	public static String set_selfconsumecell(String cardId, String access_token, boolean isOpen, boolean needVerifyCod,
 			boolean needRemarkAmount) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
@@ -180,7 +180,7 @@ public class CardApi {
 	 *            基础
 	 * @return {jsonResult}
 	 */
-	public String get_user_card_list(String openid, String access_token) {
+	public static String get_user_card_list(String openid, String access_token) {
 		return get_user_card_list(openid, null, access_token);
 	}
 
@@ -195,7 +195,7 @@ public class CardApi {
 	 *            基础
 	 * @return {jsonResult}
 	 */
-	public String get_user_card_list(String openid, String cardId, String access_token) {
+	public static String get_user_card_list(String openid, String cardId, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("openid", openid);
 		if (cardId != null) {
@@ -215,7 +215,7 @@ public class CardApi {
 	 *            基础
 	 * @return {jsonResult}
 	 */
-	public String get(String cardId, String access_token) {
+	public static String get(String cardId, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		String jsonString = JSON.toJSONString(m);
@@ -234,7 +234,7 @@ public class CardApi {
 	 *            基础
 	 * @return {jsonResult}
 	 */
-	public String get_batch(int offset, String access_token, int count) {
+	public static String get_batch(int offset, String access_token, int count) {
 		return get_batch(offset, access_token, count, null);
 	}
 
@@ -251,7 +251,7 @@ public class CardApi {
 	 *            支持开发者拉出指定状态的卡券列表“CARD_STATUS_NOT_VERIFY”,待审核；“CARD_STATUS_VERIFY_FAIL”,审核失败；“CARD_STATUS_VERIFY_OK”，通过审核；“CARD_STATUS_DELETE”，卡券被商户删除；“CARD_STATUS_DISPATCH”在公众平台投放过的卡券；
 	 * @return {jsonResult}
 	 */
-	public String get_batch(int offset, String access_token, int count, List<String> statusList) {
+	public static String get_batch(int offset, String access_token, int count, List<String> statusList) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("offset", offset);
 		m.put("count", count);
@@ -270,7 +270,7 @@ public class CardApi {
 	 *            JSON数据
 	 * @return {jsonResult}
 	 */
-	public String update(String jsonStr, String access_token) {
+	public static String update(String jsonStr, String access_token) {
 		String jsonResult = HttpClientUtil.postJson(update + access_token, jsonStr);
 		return jsonResult;
 	}
@@ -284,7 +284,7 @@ public class CardApi {
 	 *            增减的库存数量 负数为减，正数为增加,0不增不减。
 	 * @return {jsonResult}
 	 */
-	public String modifystock(String cardId, int stockValue, String access_token) {
+	public static String modifystock(String cardId, int stockValue, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		if (stockValue >= 0) {
@@ -304,7 +304,7 @@ public class CardApi {
 	 *            卡券ID
 	 * @return {jsonResult}
 	 */
-	public String delete(String cardId, String access_token) {
+	public static String delete(String cardId, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		String jsonString = JSON.toJSONString(m);
@@ -321,7 +321,7 @@ public class CardApi {
 	 *            用户发生退款 失效理由
 	 * @return {jsonResult}
 	 */
-	public String unavailable_by_code(String code, String reason, String access_token) {
+	public static String unavailable_by_code(String code, String reason, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("code", code);
 		m.put("reason", reason);
@@ -339,7 +339,7 @@ public class CardApi {
 	 *            用户发生退款 失效理由
 	 * @return {jsonResult}
 	 */
-	public String unavailable_by_card(String cardId, String reason, String access_token) {
+	public static String unavailable_by_card(String cardId, String reason, String access_token) {
 		Map<Object, Object> m = new HashMap<Object, Object>();
 		m.put("card_id", cardId);
 		m.put("reason", reason);

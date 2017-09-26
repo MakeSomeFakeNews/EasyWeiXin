@@ -16,18 +16,18 @@ import com.spring4.weixin.sdk.VerifyKit;
  * @author spring4
  */
 public class MediaApi {
-	private String newsUrl = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+	private static String newsUrl = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
 
 	// 获取永久素材
-	private String get_material_url = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=";
+	private static String get_material_url = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=";
 
-	private String del_media_url = "https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=ACCESS_TOKEN";
+	private static String del_media_url = "https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=ACCESS_TOKEN";
 
-	private String update_news_url = "https://api.weixin.qq.com/cgi-bin/material/update_news?access_token=";
+	private static String update_news_url = "https://api.weixin.qq.com/cgi-bin/material/update_news?access_token=";
 
-	private String batchget_material_url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=";
+	private static String batchget_material_url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=";
 
-	private String media_count_url = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN";
+	private static String media_count_url = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN";
 
 	/**
 	 * 上传一个临时素材
@@ -40,7 +40,7 @@ public class MediaApi {
 	 * @throws IOException
 	 * @return 返回mediaId
 	 */
-	public String upload_temp_media(String access_token, String type, String fileUrl) throws IOException {
+	public static String upload_temp_media(String access_token, String type, String fileUrl) throws IOException {
 		String media = HttpClientUtil.uploadMedia(access_token, type, fileUrl);
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("--------upload_temp_media------");
@@ -50,7 +50,7 @@ public class MediaApi {
 		return media;
 	}
 
-	public String addNews(List<MediaArticles> mediaArticles) {
+	public static String addNews(List<MediaArticles> mediaArticles) {
 		String json = null;
 		if (mediaArticles != null) {
 			json = JSON.toJSONString(mediaArticles);
@@ -74,7 +74,7 @@ public class MediaApi {
 	 *         CNFwaRrSaKTPCUdBK9DgEHicsKwWCBRQ/0" }
 	 * @throws IOException
 	 */
-	public String upload_image(String access_token, String fileUrl) throws IOException {
+	public static String upload_image(String access_token, String fileUrl) throws IOException {
 		String url = HttpClientUtil.uploadImg(access_token, fileUrl);
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("--------upload_image------");
@@ -94,7 +94,7 @@ public class MediaApi {
 	 * @return media
 	 * @throws IOException
 	 */
-	public String upload_material_media(String access_token, String type, String fileUrl) throws IOException {
+	public static String upload_material_media(String access_token, String type, String fileUrl) throws IOException {
 		String media = HttpClientUtil.uploadMaterial(access_token, type, fileUrl);
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("--------upload_material_media------");
@@ -121,8 +121,8 @@ public class MediaApi {
 	 * @throws IOException
 	 */
 
-	public String upload_video(String access_token, String type, String fileUrl, String title, String introduction)
-			throws IOException {
+	public static String upload_video(String access_token, String type, String fileUrl, String title,
+			String introduction) throws IOException {
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("title", title);
 		m.put("introduction", introduction);
@@ -144,7 +144,7 @@ public class MediaApi {
 	 *            要获取的素材的media_id
 	 * @return InputStream 流，考虑到这里可能返回json或file请自行使用IOUtils转换
 	 */
-	public void getMaterial(String media_id, String access_token) {
+	public static void getMaterial(String media_id, String access_token) {
 		String url = get_material_url + access_token;
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("media_id", media_id);
@@ -163,7 +163,7 @@ public class MediaApi {
 	 * 
 	 * @param mediaID
 	 */
-	public void del_material_media(String mediaId, String access_token) {
+	public static void del_material_media(String mediaId, String access_token) {
 		HashMap<String, String> m = new HashMap<String, String>();
 		m.put("media_id", mediaId);
 		String json = JSON.toJSONString(m);
@@ -187,7 +187,7 @@ public class MediaApi {
 	 *            图文素材
 	 * @return ApiResult 返回信息
 	 */
-	public void updata_news(String media_id, int index, MediaArticles mediaArticles, String access_token) {
+	public static void updata_news(String media_id, int index, MediaArticles mediaArticles, String access_token) {
 		String url = update_news_url + access_token;
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("media_id", media_id);
@@ -210,7 +210,7 @@ public class MediaApi {
 	 * 
 	 * @param access_token
 	 */
-	public String get_meida_count(String access_token) {
+	public static String get_meida_count(String access_token) {
 		String string = HttpClientUtil.get(media_count_url);
 		VerifyKit.verify(string);
 		return string;
@@ -227,7 +227,7 @@ public class MediaApi {
 	 *            返回素材的数量，取值在1到20之间
 	 * @return ApiResult 返回信息
 	 */
-	public String batchGetMaterial(MediaType mediaType, int offset, int count, String access_token) {
+	public static String batchGetMaterial(MediaType mediaType, int offset, int count, String access_token) {
 		String url = batchget_material_url + access_token;
 
 		if (offset < 0)

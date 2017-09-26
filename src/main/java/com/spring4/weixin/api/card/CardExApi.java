@@ -9,11 +9,11 @@ import com.spring4.utils.HttpClientUtil;
  * 日期: 2017年8月7日 下午12:56:18
  */
 public class CardExApi {
-	private String meetingTicketUpdateUserUrl = "https://api.weixin.qq.com/card/meetingticket/updateuser?access_token=";
+	private static String meetingTicketUpdateUserUrl = "https://api.weixin.qq.com/card/meetingticket/updateuser?access_token=";
 
-	private String movieTicketUpdateUserUrl = "https://api.weixin.qq.com/card/movieticket/updateuser?access_token=";
+	private static String movieTicketUpdateUserUrl = "https://api.weixin.qq.com/card/movieticket/updateuser?access_token=";
 
-	private String checkinBoardingpassUrl = "https://api.weixin.qq.com/card/boardingpass/checkin?access_token=";
+	private static String checkinBoardingpassUrl = "https://api.weixin.qq.com/card/boardingpass/checkin?access_token=";
 
 	/**
 	 * 更新会议门票
@@ -22,7 +22,7 @@ public class CardExApi {
 	 *            JSON数据
 	 * @return {json}
 	 */
-	public String update_meeting_ticket_user(String jsonStr, String access_token) {
+	public static String update_meeting_ticket_user(String jsonStr, String access_token) {
 		String jsonResult = HttpClientUtil.postJson(meetingTicketUpdateUserUrl + access_token, jsonStr);
 		return jsonResult;
 	}
@@ -34,7 +34,7 @@ public class CardExApi {
 	 *            JSON数据
 	 * @return {json}
 	 */
-	public String UpdateMovieTicketUser(String jsonStr, String access_token) {
+	public static String UpdateMovieTicketUser(String jsonStr, String access_token) {
 		String jsonResult = HttpClientUtil.postJson(movieTicketUpdateUserUrl + access_token, jsonStr);
 		return jsonResult;
 	}
@@ -46,7 +46,7 @@ public class CardExApi {
 	 *            JSON数据
 	 * @return {json}
 	 */
-	public String checkinBoardingpass(String jsonStr, String access_token) {
+	public static String checkinBoardingpass(String jsonStr, String access_token) {
 		String jsonResult = HttpClientUtil.postJson(checkinBoardingpassUrl + access_token, jsonStr);
 		return jsonResult;
 	}

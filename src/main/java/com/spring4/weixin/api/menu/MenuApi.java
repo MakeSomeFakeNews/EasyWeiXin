@@ -22,20 +22,20 @@ import com.spring4.weixin.sdk.VerifyKit;
  * 
  * @author spring4
  */
-public class MenuApi {
-	private String MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+public  class MenuApi {
+	private static String MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 
-	private String testMenu = "https://api.weixin.qq.com/cgi-bin/menu/trymatch?access_token=ACCESS_TOKEN";
+	private static String testMenu = "https://api.weixin.qq.com/cgi-bin/menu/trymatch?access_token=ACCESS_TOKEN";
 
-	private String delConditionaMenu = "https://api.weixin.qq.com/cgi-bin/menu/delconditional?access_token=ACCESS_TOKEN";
+	private static String delConditionaMenu = "https://api.weixin.qq.com/cgi-bin/menu/delconditional?access_token=ACCESS_TOKEN";
 
-	private String createConditionalMenu = "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=ACCESS_TOKEN";
+	private static String createConditionalMenu = "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=ACCESS_TOKEN";
 
-	private String delMenu = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
+	private static String delMenu = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
 
-	private String MENU_SEARCH = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
+	private static String MENU_SEARCH = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
 
-	public void createMenu(WeixinMenu menu, String access_token) {
+	public static  void createMenu(WeixinMenu menu, String access_token) {
 		List<WeixinMenu> wm = new ArrayList<WeixinMenu>();
 		wm.add(menu);
 		Map<String, List<WeixinMenu>> map = new HashMap<String, List<WeixinMenu>>();
@@ -52,7 +52,7 @@ public class MenuApi {
 
 	}
 
-	public String getMenu(String access_token) {
+	public static  String getMenu(String access_token) {
 		String menu = HttpClientUtil.get(MENU_SEARCH.replace("ACCESS_TOKEN", access_token));
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("--------获取菜单------");
@@ -62,7 +62,7 @@ public class MenuApi {
 		return menu;
 	}
 
-	public void delMenu(String access_token) {
+	public static  void delMenu(String access_token) {
 		String resString = HttpClientUtil.get(delMenu.replace("ACCESS_TOKEN", access_token));
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("--------删除菜单------");
@@ -72,7 +72,7 @@ public class MenuApi {
 		VerifyKit.verify(resString);
 	}
 
-	public String createConditionalMenu(String access_token, String jsonStr) {
+	public static  String createConditionalMenu(String access_token, String jsonStr) {
 		String menuId = HttpClientUtil.postJson(createConditionalMenu.replace("ACCESS_TOKEN", access_token), jsonStr);
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("--------创建Conditional菜单------");
@@ -85,7 +85,7 @@ public class MenuApi {
 	/**
 	 * 请求示例 { "menuid":"208379533" }
 	 */
-	public void delConditionaMenu(String access_token, String jsonstr) {
+	public static  void delConditionaMenu(String access_token, String jsonstr) {
 		String resString = HttpClientUtil.postJson(delConditionaMenu.replace("ACCESS_TOKEN", access_token), jsonstr);
 		if (PropertiesUtil.isDebug()) {
 			System.out.println("--------删除Conditional菜单------");
@@ -102,7 +102,7 @@ public class MenuApi {
 	 * @param jsonStr
 	 * @return
 	 */
-	public String testMenu(String access_token, String jsonStr) {
+	public static  String testMenu(String access_token, String jsonStr) {
 		String resString = HttpClientUtil.postJson(testMenu.replace("ACCESS_TOKEN", access_token), jsonStr);
 
 		return resString;

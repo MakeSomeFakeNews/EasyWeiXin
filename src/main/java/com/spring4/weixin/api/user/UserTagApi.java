@@ -14,21 +14,21 @@ import com.spring4.weixin.sdk.VerifyKit;
 
 public class UserTagApi {
 
-	private String create_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=";
+	private static String create_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=";
 
-	private String tag_list_url = "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=";
+	private static String tag_list_url = "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=";
 
-	private String updata_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=";
+	private static String updata_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=";
 
-	private String del_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=";
+	private static String del_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=";
 
-	private String GET_USER_URL = "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=";
+	private static String GET_USER_URL = "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=";
 
-	private String BATCH_TAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=";
+	private static String BATCH_TAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=";
 
-	private String BATCH_UNTAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=";
+	private static String BATCH_UNTAGGING_URL = "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=";
 
-	private String GET_ID_LIST_URL = "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=";
+	private static String GET_ID_LIST_URL = "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=";
 
 	/**
 	 * 参数说明 参数 说明 access_token 调用接口凭据 name 标签名（30个字符以内） 返回说明（正常时返回的json数据包示例） {
@@ -38,7 +38,7 @@ public class UserTagApi {
 	 * @param tag_name
 	 * @return
 	 */
-	public String create_tag(String access_token, String tag_name) {
+	public static String create_tag(String access_token, String tag_name) {
 
 		Map<String, Tag> m = new HashMap<String, Tag>();
 		m.put("tag", new Tag(tag_name));
@@ -56,7 +56,7 @@ public class UserTagApi {
 	 * 
 	 * @return
 	 */
-	public List<Tags> get_tag_list(String access_token) {
+	public static List<Tags> get_tag_list(String access_token) {
 		String string = HttpClientUtil.get(tag_list_url + access_token);
 		List<Tags> tags = new ArrayList<Tags>();
 		if (string != null) {
@@ -83,7 +83,7 @@ public class UserTagApi {
 	 * @param id
 	 * @param name
 	 */
-	public void updata_tag(Integer id, String name, String access_token) {
+	public static void updata_tag(Integer id, String name, String access_token) {
 		Map<String, Tags> m = new HashMap<String, Tags>();
 		m.put("tag", new Tags(id, name, null));
 		String jsonString = JSON.toJSONString(m);
@@ -97,7 +97,7 @@ public class UserTagApi {
 	 * @param id
 	 * @param access_token
 	 */
-	public void del_tag(Integer id, String access_token) {
+	public static void del_tag(Integer id, String access_token) {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		HashMap<String, Object> tags = new HashMap<String, Object>();
 		tags.put("id", id);
@@ -114,7 +114,7 @@ public class UserTagApi {
 	 * @param access_token
 	 * @return
 	 */
-	public String get_tag_user(int tagId, String access_token) {
+	public static String get_tag_user(int tagId, String access_token) {
 		return get_tag_user(tagId, null, access_token);
 	}
 
@@ -126,7 +126,7 @@ public class UserTagApi {
 	 * @param access_token
 	 * @return
 	 */
-	public String get_tag_user(int tagId, String nextOpenId, String access_token) {
+	public static String get_tag_user(int tagId, String nextOpenId, String access_token) {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("tagid", tagId);
 		if (StrKit.notBlank(nextOpenId)) {
@@ -145,7 +145,7 @@ public class UserTagApi {
 	 * @param tagId
 	 * @param openIdList
 	 */
-	public void batchAddTag(String access_token, int tagId, List<String> openIdList) {
+	public static void batchAddTag(String access_token, int tagId, List<String> openIdList) {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("tagid", tagId);
 		data.put("openid_list", openIdList);
@@ -162,7 +162,7 @@ public class UserTagApi {
 	 * @param tagId
 	 * @param openIdList
 	 */
-	public void batchDelTag(String access_token, int tagId, List<String> openIdList) {
+	public static void batchDelTag(String access_token, int tagId, List<String> openIdList) {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("tagid", tagId);
 		data.put("openid_list", openIdList);
@@ -178,7 +178,7 @@ public class UserTagApi {
 	 * @param openId
 	 * @return 标签列表json字符串
 	 */
-	public String get_user_tag(String access_token, String openId) {
+	public static String get_user_tag(String access_token, String openId) {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("openid", openId);
 		String jsonString = JSON.toJSONString(data);
