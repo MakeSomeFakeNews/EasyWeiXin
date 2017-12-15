@@ -2,7 +2,7 @@
 如果你觉得还不错的话，点击star，fork支持一下吧<br>
 让微信开发变得更加简单
 作者:QQ:[1239181712](http://wpa.qq.com/msgrd?v=3&uin=1239181712&site=qq&menu=yes)<br>
-交流群:454197074
+
 # 快速搭建微信公众平台服务器<br>
 简单封装了所有与微信服务器交互的消息:文本消息、图片消息、图文消息等等<br>
 提供MenuAPI、UserApi、UserTagAPI、MediaAPI、OauthAPI。。。。等等等等用于实现所有高级接口功能，使用极其简单<br>
